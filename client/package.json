@@ -50,7 +50,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:8800/api/",
+  "proxy": "https://ayushi-gupta-mnit.github.io/server/api/",
   "devDependencies": {
     "gh-pages": "^4.0.0"
   }
