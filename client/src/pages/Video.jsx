@@ -129,7 +129,7 @@ const Video = () => {
 
       try {
         const videoRes = await axios.get(`${API_URL}videos/find/${path}`);
-        if(!channel){
+        if(channel){
        const channelRes = await axios.get(
           `${API_URL}users/find/${videoRes.data.userId}`
         );
@@ -138,24 +138,25 @@ const Video = () => {
         }
       } catch (err) {}
     };
-    if(path){
-    fetchData();
-    }
+   if(path)
+    {fetchData();}
+    
   }, [path, dispatch]);
 
   const handleLike = async () => {
-    await axios.put(`${API_URL}/users/like/${currentVideo._id}`,{},{withCredentials: true});
+    await axios.put(`${API_URL}users/like/${currentVideo._id}`,{},{withCredentials: true});
     dispatch(like(currentUser._id));
   };
   const handleDislike = async () => {
-    await axios.put(`${API_URL}/users/dislike/${currentVideo._id}`,{},{withCredentials: true});
+    await axios.put(`${API_URL}users/dislike/${currentVideo._id}`,{},{withCredentials: true});
     dispatch(dislike(currentUser._id));
   };
 
   const handleSub = async () => {
+    console.log(currentUser._id);
     currentUser.subscribedUsers.includes(channel._id)
-      ? await axios.put(`${API_URL}/users/unsub/${channel._id}`,{},{withCredentials: true})
-      : await axios.put(`${API_URL}/users/sub/${channel._id}`,{},{withCredentials: true});
+      ? await axios.put(`${API_URL}users/unsub/${channel._id}`,{},{withCredentials: true})
+      : await axios.put(`${API_URL}users/sub/${channel._id}`,{},{withCredentials: true});
     dispatch(subscription(channel._id));
   };
 
